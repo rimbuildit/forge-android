@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080711">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>FORGE — Train · Track · Transform</title>
+<style>
+:root{
+ --bg:#080711;--panel:#11101e;--panel2:#151329;--panel3:#1b1730;--line:#2a2344;
+ --text:#f7f4ff;--muted:#aaa2c7;--purple:#a52bff;--purple2:#7626d9;--lilac:#e0a0ff;
+ --pink:#d85cff;--mint:#9ee8c3;--amber:#ffc879;--danger:#ff8ca8;--radius:20px;
+ --shadow:0 12px 36px #0005, inset 0 1px #ffffff05;
+}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#25113d 0,transparent 42%),var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--lilac);outline-offset:2px}
+.app{max-width:1180px;margin:auto;padding:18px 18px 110px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:10px}.flame{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#6c22b4,#bd54ff);box-shadow:0 0 24px #a52bff38;font-size:23px}.brand b{font-size:21px;letter-spacing:.04em}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.08em;margin-top:2px}.top-actions{display:flex;gap:8px;align-items:center}.pill,.iconbtn,.btn{border:1px solid var(--line);background:#151225;border-radius:999px;padding:10px 14px;color:var(--text)}.iconbtn{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:18px}.goal-pill{color:var(--lilac);font-size:12px;font-weight:700;letter-spacing:.06em}
+h1{font-size:clamp(27px,5vw,38px);margin:6px 0 4px;letter-spacing:-.04em}h2{font-size:18px;margin:0 0 14px;letter-spacing:-.02em}h3{font-size:14px;margin:0 0 7px}.subtitle{color:var(--muted);font-size:14px;margin-bottom:20px}
+.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}.card{background:linear-gradient(145deg,#131121,#0f0e1b);border:1px solid var(--line);border-radius:var(--radius);padding:17px;box-shadow:var(--shadow);min-width:0}.span12{grid-column:span 12}.span8{grid-column:span 8}.span7{grid-column:span 7}.span6{grid-column:span 6}.span5{grid-column:span 5}.span4{grid-column:span 4}.muted{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.stack{display:flex;flex-direction:column;gap:10px}.btn{border-radius:13px;background:#1b1630;border-color:#4c2c70;padding:11px 14px;font-weight:650;font-size:13px}.btn.primary{background:linear-gradient(105deg,#8126df,#c44ff4);border:0;box-shadow:0 6px 22px #a52bff2b}.btn.ghost{background:transparent;border-color:var(--line)}.btn.danger{color:var(--danger);border-color:#6a2c44;background:#21101c}.btn:active{transform:scale(.985)}.chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:11px}.chip.active{background:#482064;color:#f2c9ff;border-color:#8741bd}.metric{font-size:25px;font-weight:750;letter-spacing:-.04em}.metric small{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0}.bar{height:8px;background:#28233b;border-radius:999px;overflow:hidden;margin-top:9px}.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#8126df,#d66bff);width:0}.macro-row{margin:13px 0}.macro-row .row{font-size:12px}.ring-wrap{display:flex;align-items:center;gap:20px}.ring{--p:0%;width:178px;height:178px;flex:0 0 178px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(from -90deg,var(--pink) 0%,var(--purple) var(--p),#302343 var(--p),#302343 100%);position:relative;box-shadow:0 0 32px #a52bff15}.ring:before{content:"";position:absolute;inset:12px;border-radius:50%;background:#100e1d;border:1px solid #ffffff09}.ring-content{z-index:1;text-align:center}.ring-content .metric{font-size:28px}.ring-content .flame-mini{color:var(--lilac);font-size:20px}.foodlist,.entrylist{display:flex;flex-direction:column;gap:8px}.fooditem,.entry{display:flex;align-items:center;gap:11px;padding:11px;background:#151326;border:1px solid #292340;border-radius:15px}.foodemoji{width:43px;height:43px;flex:0 0 43px;border-radius:13px;background:#241b39;display:grid;place-items:center;font-size:22px}.foodmain{flex:1;min-width:0}.foodmain b{font-size:13px;display:block}.foodmain small{color:var(--muted);font-size:11px;display:block;margin-top:3px}.foodcal{text-align:right;font-size:12px;font-weight:700;white-space:nowrap}.addcircle{width:32px;height:32px;border-radius:50%;border:1px solid #8644b9;color:var(--lilac);background:#221432;font-size:20px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid #302846;border-radius:12px;background:#0c0b16;color:var(--text);padding:11px 12px;min-width:0}input::placeholder,textarea::placeholder{color:#726b8b}textarea{resize:vertical;min-height:75px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.formgrid .wide{grid-column:1/-1}.tabs{display:flex;gap:5px;background:#0d0b18;border:1px solid var(--line);padding:4px;border-radius:999px}.tabs button{border:0;background:transparent;border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px;flex:1}.tabs button.active{background:linear-gradient(100deg,#8126df,#b849ed);color:#fff}.nav{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#0b0915ed;backdrop-filter:blur(18px);border-top:1px solid #2a2344;padding:9px max(10px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}.navinner{display:flex;width:min(760px,100%);justify-content:space-around;gap:4px}.nav button{flex:1;max-width:120px;background:transparent;border:0;border-radius:15px;color:#8f86ab;padding:8px 2px 6px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px}.nav button .ico{font-size:19px}.nav button.active{color:#f4caff;background:linear-gradient(180deg,#37165188,#20132e88);box-shadow:inset 0 1px #ffffff0b}.nav button.active .ico{filter:drop-shadow(0 0 7px #c34aff)}.notice{padding:12px 14px;background:#1a1429;border:1px solid #39264f;border-radius:14px;color:#c9bee5;font-size:12px;line-height:1.5}.seg{display:flex;gap:7px;flex-wrap:wrap}.seg button{background:#141123;border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:12px;color:var(--muted)}.seg button.active{background:#462060;color:#fff;border-color:#8e45bd}.exercise{border:1px solid #2b2443;border-radius:16px;padding:13px;background:#141123}.setrow{display:grid;grid-template-columns:30px 1fr 1fr 38px;gap:7px;align-items:center;margin-top:8px}.setrow input{padding:9px 5px;text-align:center}.setrow .setnum{text-align:center;color:var(--muted);font-size:12px}.check{width:34px;height:34px;border-radius:10px;border:1px solid #49335e;background:#1a142a;color:#a89abf}.check.done{background:#6d20aa;color:white;border-color:#c76bff}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#151326;border:1px solid #2a2344;border-radius:14px;padding:12px}.stat .metric{font-size:20px}.stat label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}.chart{width:100%;height:160px;display:block}.chart text{fill:#968bad;font-size:10px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.daycell{border:1px solid #2b2442;background:#131120;border-radius:10px;min-height:49px;padding:6px 2px;text-align:center;font-size:11px;color:var(--muted)}.daycell.has{background:#321848;border-color:#75409b;color:#fff}.daycell.selected{outline:2px solid var(--lilac)}.dot{width:5px;height:5px;border-radius:50%;background:#d66bff;margin:5px auto 0}.hide{display:none!important}.toast{position:fixed;z-index:50;bottom:95px;left:50%;transform:translateX(-50%);background:#28203b;border:1px solid #70419a;border-radius:999px;padding:11px 16px;font-size:12px;box-shadow:0 10px 30px #0008;display:none;max-width:90%;text-align:center}.toast.show{display:block}.divider{height:1px;background:#28213b;margin:14px 0}.footnote{font-size:11px;color:#827997;line-height:1.5}.headerline{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+@media(min-width:900px){.app{padding-bottom:35px}.nav{position:static;background:transparent;border:0;padding:10px 0 0}.navinner{justify-content:flex-start}.nav button{flex-direction:row;max-width:none;flex:0 0 auto;padding:10px 14px;font-size:12px}.nav button .ico{font-size:16px}.span8{grid-column:span 8}.span7{grid-column:span 7}.span6{grid-column:span 6}.span5{grid-column:span 5}.span4{grid-column:span 4}}
+@media(max-width:700px){.app{padding:14px 12px 105px}.top{align-items:flex-start}.brand b{font-size:18px}.brand small{font-size:9px}.flame{width:38px;height:38px}.top-actions .pill{display:none}.grid{gap:10px}.span8,.span7,.span6,.span5,.span4{grid-column:span 12}.card{padding:14px;border-radius:18px}.ring-wrap{gap:14px}.ring{width:142px;height:142px;flex-basis:142px}.ring:before{inset:9px}.ring-content .metric{font-size:23px}.ring-wrap .macro-row{margin:8px 0}.metric{font-size:22px}.statgrid{gap:6px}.stat{padding:10px}.stat .metric{font-size:18px}.formgrid{grid-template-columns:1fr 1fr}.setrow{grid-template-columns:25px 1fr 1fr 34px}.setrow input{font-size:13px}.nav button{font-size:9px}.nav button .ico{font-size:18px}}
+@media(max-width:370px){.ring-wrap{flex-direction:column}.ring{width:160px;height:160px;flex-basis:160px}.ring-wrap>div:last-child{width:100%}.nav button .ico{font-size:16px}.nav button{font-size:8px}}
+</style>
+</head>
+<body>
+<div class="app">
+ <header class="top">
+  <div class="brand"><div class="flame">ϟ</div><div><b>FORGE</b><small>TRAIN · TRACK · TRANSFORM</small></div></div>
+  <div class="top-actions"><span class="pill goal-pill" id="goalBadge">CUT · PHASE 1</span><button class="iconbtn" id="quickDate" aria-label="Today">▦</button></div>
+ </header>
+ <div class="row" style="margin-bottom:4px"><h1 id="pageTitle">Your day</h1><span class="chip" id="todayLabel"></span></div>
+ <div class="subtitle" id="pageSubtitle">Small actions. Measurable progress.</div>
+
+ <main>
+  <section class="page active" id="page-home">
+   <div class="grid">
+    <article class="card span7">
+     <div class="headerline"><h2>Today's fuel</h2><button class="btn ghost" data-go="nutrition">Log food ↗</button></div>
+     <div class="ring-wrap">
+      <div class="ring" id="calRing"><div class="ring-content"><div class="flame-mini">ϟ</div><div class="metric" id="calConsumed">0</div><div class="small muted">of <span id="calTarget">2,000</span> kcal</div><div class="small" style="margin-top:7px;color:var(--lilac)"><span id="calLeft">2,000</span> left</div></div></div>
+      <div style="flex:1;min-width:0">
+       <div class="macro-row"><div class="row"><b>Protein</b><span id="proteinText">0 / 160 g</span></div><div class="bar"><i id="proteinBar"></i></div></div>
+       <div class="macro-row"><div class="row"><b>Carbs</b><span id="carbsText">0 / 200 g</span></div><div class="bar"><i id="carbsBar" style="background:linear-gradient(90deg,#9c48e8,#d58bff)"></i></div></div>
+       <div class="macro-row"><div class="row"><b>Fat</b><span id="fatText">0 / 70 g</span></div><div class="bar"><i id="fatBar" style="background:linear-gradient(90deg,#bf7bff,#e5b7ff)"></i></div></div>
+      </div>
+     </div>
+    </article>
+    <article class="card span5">
+     <div class="headerline"><h2>Your body goal</h2><button class="btn ghost" data-go="profile">Edit</button></div>
+     <div class="seg" id="goalSelector"><button data-goal="cut" class="active">CUT</button><button data-goal="bulk">BULK</button><button data-goal="recomp">RECOMP</button></div>
+     <div style="margin:14px 0 6px" class="metric" id="goalName">Cut · Phase 1</div><div class="muted small" id="goalDesc">Keep strength while reducing body fat.</div>
+     <div class="divider"></div><div class="statgrid"><div class="stat"><label>Weight</label><div class="metric" id="homeWeight">—</div><span class="tiny muted">kg</span></div><div class="stat"><label>Protein</label><div class="metric" id="homeProtein">0%</div><span class="tiny muted">of target</span></div><div class="stat"><label>Steps</label><div class="metric" id="homeSteps">0</div><span class="tiny muted">today</span></div></div>
+    </article>
+    <article class="card span8">
+     <div class="headerline"><h2>Today's training</h2><button class="btn ghost" data-go="train">Open workout ↗</button></div>
+     <div id="homeWorkout" class="notice">No workout logged yet. Start a session when you're ready.</div>
+     <div class="row" style="margin-top:12px;flex-wrap:wrap"><div><div class="muted small">Session volume</div><b id="homeVolume">0 kg</b></div><div><div class="muted small">Sets completed</div><b id="homeSets">0</b></div><button class="btn primary" data-go="train">Start workout</button></div>
+    </article>
+    <article class="card span4">
+     <div class="headerline"><h2>Daily activity</h2><span>✦</span></div>
+     <div class="macro-row"><div class="row"><b>Steps</b><span id="stepsText">0 / 10,000</span></div><div class="bar"><i id="stepsBar"></i></div></div>
+     <div class="macro-row"><div class="row"><b>Cardio</b><span id="cardioText">0 min</span></div><div class="bar"><i id="cardioBar" style="background:linear-gradient(90deg,#9c48e8,#d58bff)"></i></div></div>
+     <button class="btn" style="width:100%;margin-top:8px" data-go="activity">Log activity</button>
+    </article>
+    <article class="card span12">
+     <div class="headerline"><h2>Quick log</h2><span class="muted small">Make the next entry easy</span></div>
+     <div class="grid">
+      <div class="span4"><button class="btn" style="width:100%" data-go="nutrition">＋ Food</button></div><div class="span4"><button class="btn" style="width:100%" data-go="body">＋ Weight</button></div><div class="span4"><button class="btn" style="width:100%" data-go="activity">＋ Steps / cardio</button></div>
+     </div>
+    </article>
+   </div>
+  </section>
+
+  <section class="page" id="page-train">
+   <div class="grid">
+    <article class="card span8">
+     <div class="headerline"><div><h2>Workout tracker</h2><div class="muted small">Log sets, reps and load. Previous performance stays visible.</div></div><button class="btn primary" id="finishWorkout">Finish</button></div>
+     <div class="formgrid"><div class="field"><label>Workout name</label><input id="workoutName" value="Push A" placeholder="e.g. Upper A"></div><div class="field"><label>Effort (RPE)</label><select id="workoutRpe"><option value="">Choose</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div></div>
+     <div id="exerciseList" class="stack" style="margin-top:13px"></div>
+     <div class="row" style="margin-top:12px"><button class="btn" id="addExercise">＋ Add exercise</button><button class="btn ghost" id="restToggle">Rest timer · 01:30</button></div>
+     <div class="notice hide" id="restPanel" style="margin-top:12px"><div class="row"><b id="restTime">01:30</b><div><button class="btn" id="restStart">Start</button> <button class="btn ghost" id="restReset">Reset</button></div></div></div>
+    </article>
+    <article class="card span4">
+     <h2>Your next rep</h2><div class="muted small">Suggested progression, not a guarantee.</div>
+     <div class="divider"></div><div class="small muted">Last session</div><div class="metric" id="lastPerformance">60 × 8</div><div style="text-align:center;color:var(--lilac);font-size:23px;margin:8px">↓</div><div class="small muted">Today's suggested target</div><div class="metric" id="nextPerformance">60 × 9</div>
+     <div class="notice" style="margin-top:14px" id="goalCoaching">CUT: Prioritize quality reps and preserve strength.</div>
+     <div class="divider"></div><h3>Session summary</h3><div class="statgrid"><div class="stat"><label>Sets</label><div class="metric" id="workSets">0</div></div><div class="stat"><label>Volume</label><div class="metric" id="workVolume">0</div></div><div class="stat"><label>Time</label><div class="metric" id="workDuration">0m</div></div></div>
+    </article>
+   </div>
+  </section>
+
+  <section class="page" id="page-nutrition">
+   <div class="grid">
+    <article class="card span5">
+     <h2>Log food</h2><div class="field"><label>Search or enter food name</label><input id="foodSearch" placeholder="Eggs, oats, rice…"></div>
+     <div class="formgrid" style="margin-top:10px"><div class="field"><label>Calories</label><input type="number" id="foodKcal" placeholder="250" min="0"></div><div class="field"><label>Protein (g)</label><input type="number" id="foodProtein" placeholder="25" min="0"></div><div class="field"><label>Carbs (g)</label><input type="number" id="foodCarbs" placeholder="20" min="0"></div><div class="field"><label>Fat (g)</label><input type="number" id="foodFat" placeholder="8" min="0"></div><div class="field wide"><label>Meal</label><select id="foodMeal"><option>Breakfast</option><option>Lunch</option><option>Snack</option><option>Dinner</option><option>Other</option></select></div></div>
+     <button class="btn primary" style="width:100%;margin-top:12px" id="saveFood">Add to today's food log</button>
+     <div class="divider"></div><h3>Quick add</h3><div class="foodlist" id="quickFoods"></div>
+    </article>
+    <article class="card span7"><div class="headerline"><h2>Today's food</h2><span class="chip" id="foodTotalChip">0 kcal</span></div><div id="foodEntries" class="foodlist"></div></article>
+   </div>
+  </section>
+
+  <section class="page" id="page-body">
+   <div class="grid">
+    <article class="card span5"><h2>Body & weight</h2><div class="formgrid"><div class="field"><label>Weight (kg)</label><input id="weightInput" type="number" step=".1" placeholder="e.g. 82.4"></div><div class="field"><label>Waist (cm, optional)</label><input id="waistInput" type="number" step=".1" placeholder="e.g. 86"></div><div class="field wide"><label>Note</label><input id="weightNote" placeholder="Fasted, after waking…"></div></div><button class="btn primary" id="saveWeight" style="width:100%;margin-top:12px">Save measurement</button><div class="divider"></div><h3>Latest entry</h3><div class="metric" id="latestWeight">—</div><div class="muted small" id="weightChange">Log a measurement to start your trend.</div></article>
+    <article class="card span7"><h2>Weight trend</h2><svg class="chart" id="weightChart" viewBox="0 0 600 170" preserveAspectRatio="none"></svg><div class="footnote">Daily weight naturally fluctuates. Use the trend, not one isolated weigh-in.</div></article>
+    <article class="card span12"><h2>Recent measurements</h2><div id="weightEntries" class="entrylist"></div></article>
+   </div>
+  </section>
+
+  <section class="page" id="page-activity">
+   <div class="grid">
+    <article class="card span6"><h2>Steps & cardio</h2><div class="formgrid"><div class="field"><label>Steps today</label><input id="stepsInput" type="number" min="0" placeholder="10000"></div><div class="field"><label>Cardio minutes</label><input id="cardioInput" type="number" min="0" placeholder="20"></div><div class="field"><label>Cardio type</label><select id="cardioType"><option>Walking</option><option>Running</option><option>Cycling</option><option>Skipping rope</option><option>Elliptical</option><option>Other</option></select></div><div class="field"><label>Distance (km, optional)</label><input id="distanceInput" type="number" step=".1" min="0" placeholder="2.5"></div></div><button class="btn primary" id="saveActivity" style="width:100%;margin-top:12px">Save activity</button></article>
+    <article class="card span6"><h2>Today's movement</h2><div class="statgrid"><div class="stat"><label>Steps</label><div class="metric" id="activitySteps">0</div></div><div class="stat"><label>Cardio</label><div class="metric" id="activityCardio">0m</div></div><div class="stat"><label>Distance</label><div class="metric" id="activityDistance">—</div></div></div><div class="divider"></div><div class="notice">Use steps and cardio as activity measures, not as permission to eat back a precise number of calories. Device estimates can be inaccurate.</div></article>
+    <article class="card span12"><h2>Activity history</h2><div id="activityEntries" class="entrylist"></div></article>
+   </div>
+  </section>
+
+  <section class="page" id="page-progress">
+   <div class="grid">
+    <article class="card span12"><div class="headerline"><h2>Progress overview</h2><span class="chip" id="progressGoal">CUT</span></div><div class="statgrid"><div class="stat"><label>Weight change</label><div class="metric" id="progressWeight">—</div><span class="tiny muted">first to latest log</span></div><div class="stat"><label>Workouts logged</label><div class="metric" id="progressWorkouts">0</div><span class="tiny muted">saved sessions</span></div><div class="stat"><label>Food logged</label><div class="metric" id="progressFoodDays">0</div><span class="tiny muted">days with entries</span></div></div></article>
+    <article class="card span7"><h2>Body-weight trend</h2><svg class="chart" id="progressChart" viewBox="0 0 600 170" preserveAspectRatio="none"></svg></article>
+    <article class="card span5"><h2>Progressive overload</h2><div id="prList" class="entrylist"></div></article>
+    <article class="card span12"><h2>Weekly consistency</h2><div id="consistency" class="statgrid"></div></article>
+   </div>
+  </section>
+
+  <section class="page" id="page-profile">
+   <div class="grid">
+    <article class="card span6"><h2>Plan & goals</h2><div class="formgrid"><div class="field"><label>Goal mode</label><select id="profileGoal"><option value="cut">Cut</option><option value="bulk">Bulk</option><option value="recomp">Recomp</option></select></div><div class="field"><label>Phase label</label><input id="phaseInput" value="Phase 1"></div><div class="field"><label>Daily calories</label><input id="targetCalories" type="number" min="0" value="2000"></div><div class="field"><label>Protein target (g)</label><input id="targetProtein" type="number" min="0" value="160"></div><div class="field"><label>Carbs target (g)</label><input id="targetCarbs" type="number" min="0" value="200"></div><div class="field"><label>Fat target (g)</label><input id="targetFat" type="number" min="0" value="70"></div><div class="field"><label>Goal weight (kg, optional)</label><input id="goalWeight" type="number" step=".1" placeholder="e.g. 75"></div><div class="field"><label>Daily step target</label><input id="targetSteps" type="number" value="10000"></div></div><button class="btn primary" id="saveProfile" style="width:100%;margin-top:12px">Save goals</button><p class="footnote">Targets are personal settings, not medical advice. Adjust them to your needs and professional guidance where appropriate.</p></article>
+    <article class="card span6"><h2>Data & privacy</h2><div class="notice">FORGE runs locally in this browser. Your logs are saved on this device using browser storage. No account or server is required. Clearing browser data may erase your records, so keep a backup.</div><div class="stack" style="margin-top:14px"><button class="btn" id="exportJson">Download full backup (.json)</button><button class="btn" id="exportCsv">Export today's data (.csv)</button><label class="btn" for="importJson" style="text-align:center">Restore backup (.json)</label><input id="importJson" type="file" accept="application/json" class="hide"><button class="btn danger" id="clearData">Delete all app data</button></div><div class="divider"></div><h3>About FORGE</h3><p class="muted small">A standalone, mobile-first fitness tracker for food, body weight, workouts, progressive overload, steps, cardio and your Cut / Bulk / Recomp goal.</p></article>
+   </div>
+  </section>
+ </main>
+</div>
+<nav class="nav" aria-label="Main navigation"><div class="navinner">
+ <button class="active" data-page="home"><span class="ico">⌂</span>Home</button>
+ <button data-page="train"><span class="ico">♧</span>Train</button>
+ <button data-page="nutrition"><span class="ico">♨</span>Nutrition</button>
+ <button data-page="progress"><span class="ico">▥</span>Progress</button>
+ <button data-page="profile"><span class="ico">◉</span>Profile</button>
+</div></nav>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const pretty=d=>{if(!d)return '';const x=new Date(d+'T12:00:00');return x.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'})};
+const defaultData=()=>({version:1,profile:{goal:'cut',phase:'Phase 1',calories:2000,protein:160,carbs:200,fat:70,goalWeight:null,steps:10000},days:{},weights:[],workouts:[]});
+let data;
+try{data=JSON.parse(localStorage.getItem('forge_standalone_v1'))||defaultData()}catch(e){data=defaultData()}
+if(!data.profile)data=defaultData();if(!data.days)data.days={};if(!data.weights)data.weights=[];if(!data.workouts)data.workouts=[];
+let activeDate=today(), workoutStart=Date.now(), restSeconds=90, restInterval=null, currentPage='home';
+function day(d=activeDate){if(!data.days[d])data.days[d]={foods:[],steps:0,cardio:[],checkin:null};return data.days[d]}
+function save(){localStorage.setItem('forge_standalone_v1',JSON.stringify(data));render()}
+function toast(s){$('toast').textContent=s;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2300)}
+function num(id){return Math.max(0,Number($(id).value)||0)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function foodTotals(d=day()){return d.foods.reduce((a,f)=>{a.kcal+=+f.kcal||0;a.p+=+f.p||0;a.c+=+f.c||0;a.f+=+f.f||0;return a},{kcal:0,p:0,c:0,f:0})}
+function cardioTotal(d=day()){return (d.cardio||[]).reduce((a,c)=>a+(+c.minutes||0),0)}
+function setBar(id,value,target){$(id).style.width=(target?Math.min(100,value/target*100):0)+'%'}
+function svgChart(el,items){if(!items.length){el.innerHTML='<text x="20" y="80">Log your weight to see your trend.</text>';return}const vals=items.map(x=>+x.weight),min=Math.min(...vals)-.5,max=Math.max(...vals)+.5,span=max-min||1;const points=vals.map((v,i)=>`${25+i*(550/Math.max(1,vals.length-1))},${145-(v-min)/span*110}`).join(' ');el.innerHTML=`<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bd54ff" stop-opacity=".35"/><stop offset="1" stop-color="#bd54ff" stop-opacity="0"/></linearGradient></defs><polyline points="${points} 575,150 25,150" fill="url(#wg)" stroke="none"/><polyline points="${points}" fill="none" stroke="#cf76ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${vals.map((v,i)=>`<circle cx="${25+i*(550/Math.max(1,vals.length-1))}" cy="${145-(v-min)/span*110}" r="4" fill="#f1c2ff"/>`).join('')}<text x="24" y="166">${esc(items[0].date.slice(5))}</text><text x="520" y="166">${esc(items[items.length-1].date.slice(5))}</text>`}
+function render(){
+ $('todayLabel').textContent=pretty(activeDate);$('goalBadge').textContent=`${data.profile.goal.toUpperCase()} · ${data.profile.phase.toUpperCase()}`;
+ const d=day(),t=foodTotals(d),p=data.profile;
+ $('calConsumed').textContent=Math.round(t.kcal).toLocaleString();$('calTarget').textContent=(+p.calories||0).toLocaleString();$('calLeft').textContent=Math.max(0,(+p.calories||0)-t.kcal).toLocaleString();$('calRing').style.setProperty('--p',Math.min(100,t.kcal/(+p.calories||1)*100)+'%');
+ $('proteinText').textContent=`${Math.round(t.p)} / ${p.protein} g`;$('carbsText').textContent=`${Math.round(t.c)} / ${p.carbs} g`;$('fatText').textContent=`${Math.round(t.f)} / ${p.fat} g`;
+ setBar('proteinBar',t.p,p.protein);setBar('carbsBar',t.c,p.carbs);setBar('fatBar',t.f,p.fat);
+ $('goalName').textContent=`${p.goal[0].toUpperCase()+p.goal.slice(1)} · ${p.phase}`;$('goalDesc').textContent=p.goal==='cut'?'Keep strength while reducing body fat.':p.goal==='bulk'?'Build strength and muscle with controlled weight gain.':'Track strength and body trends while improving composition.';
+ $('homeWeight').textContent=data.weights.length?Number(data.weights[data.weights.length-1].weight).toFixed(1):'—';$('homeProtein').textContent=Math.round(t.p/(+p.protein||1)*100)+'%';$('homeSteps').textContent=(d.steps||0).toLocaleString();
+ $('stepsText').textContent=`${(d.steps||0).toLocaleString()} / ${(p.steps||10000).toLocaleString()}`;setBar('stepsBar',d.steps,p.steps);$('cardioText').textContent=cardioTotal(d)+' min';setBar('cardioBar',cardioTotal(d),150);
+ const latest=data.workouts.filter(w=>w.date===activeDate).slice(-1)[0];$('homeWorkout').textContent=latest?`${latest.name} · ${latest.sets.length} working sets · ${Math.round(latest.volume).toLocaleString()} kg volume`:'No workout logged yet. Start a session when you’re ready.';
+ $('homeVolume').textContent=Math.round(latest?.volume||0).toLocaleString()+' kg';$('homeSets').textContent=latest?.sets.length||0;
+ renderWorkout();renderFoods();renderWeights();renderActivity();renderProgress();
+}
+function renderWorkout(){
+ const exercises=window.sessionExercises||[{name:'Barbell Bench Press',prev:'60 kg × 8',sets:[{w:60,r:9,done:false},{w:60,r:9,done:false},{w:55,r:10,done:false}]},{name:'Incline Dumbbell Press',prev:'22.5 kg × 10',sets:[{w:22.5,r:11,done:false},{w:22.5,r:11,done:false},{w:20,r:12,done:false}]},{name:'Dumbbell Lateral Raise',prev:'8 kg × 12',sets:[{w:8,r:13,done:false},{w:8,r:13,done:false},{w:8,r:12,done:false}]},{name:'Cable Triceps Pushdown',prev:'25 kg × 12',sets:[{w:25,r:13,done:false},{w:25,r:13,done:false},{w:22.5,r:14,done:false}]}];
+ window.sessionExercises=exercises;
+ $('exerciseList').innerHTML=exercises.map((e,ei)=>`<div class="exercise"><div class="row"><div><b>${ei+1}. ${esc(e.name)}</b><div class="small muted">Previous: ${esc(e.prev||'No previous entry')}</div></div><button class="btn ghost" data-remove="${ei}" aria-label="Remove exercise">×</button></div><div class="setrow small muted"><span>Set</span><span>Weight (kg)</span><span>Reps</span><span>Done</span></div>${e.sets.map((s,si)=>`<div class="setrow"><span class="setnum">${si+1}</span><input aria-label="Set ${si+1} weight" type="number" min="0" step=".5" value="${s.w}" data-ex="${ei}" data-set="${si}" data-field="w"><input aria-label="Set ${si+1} reps" type="number" min="0" value="${s.r}" data-ex="${ei}" data-set="${si}" data-field="r"><button class="check ${s.done?'done':''}" data-done="${ei},${si}" aria-label="Complete set">${s.done?'✓':'○'}</button></div>`).join('')}<div class="row" style="margin-top:9px"><span class="tiny muted">${e.name.toLowerCase().includes('lateral')?'Controlled reps > heavier weight':'Suggested progression — adjust as needed'}</span><button class="btn ghost" data-addset="${ei}">＋ Set</button></div></div>`).join('');
+ const sets=exercises.flatMap(e=>e.sets).filter(s=>s.done),volume=sets.reduce((a,s)=>a+s.w*s.r,0);$('workSets').textContent=sets.length;$('workVolume').textContent=Math.round(volume).toLocaleString();$('workDuration').textContent=Math.max(0,Math.round((Date.now()-workoutStart)/60000))+'m';
+ $('lastPerformance').textContent=exercises[0]?.prev||'—';$('nextPerformance').textContent=exercises[0]?.sets[0]?`${exercises[0].sets[0].w} kg × ${exercises[0].sets[0].r}`:'—';
+ $('goalCoaching').textContent=data.profile.goal==='cut'?'CUT: Prioritize quality reps and preserve strength.':data.profile.goal==='bulk'?'BULK: Add reps or load when prescribed sets are completed with good technique.':'RECOMP: Track strength alongside body-weight and waist trends.';
+}
+function renderFoods(){
+ const d=day(),items=d.foods;$('foodTotalChip').textContent=Math.round(foodTotals(d).kcal)+' kcal';
+ $('foodEntries').innerHTML=items.length?items.map((f,i)=>`<div class="fooditem"><div class="foodemoji">🍽️</div><div class="foodmain"><b>${esc(f.name)}</b><small>${esc(f.meal)} · ${Math.round(f.p)}P · ${Math.round(f.c)}C · ${Math.round(f.f)}F</small></div><div class="foodcal">${Math.round(f.kcal)} kcal</div><button class="addcircle" data-foodremove="${i}" title="Remove">×</button></div>`).join(''):'<div class="empty">No food logged for this date yet.</div>';
+ const presets=[['Eggs · 2 large',140,12,1,10],['Oats · 50 g',190,7,32,4],['Chicken breast · 100 g',165,31,0,4],['Paneer · 100 g',265,18,4,20],['Whey protein · 1 scoop',120,24,3,2],['Banana · 1 medium',90,1,23,0]];
+ $('quickFoods').innerHTML=presets.map((f,i)=>`<div class="fooditem"><div class="foodemoji">${['🥚','🥣','🍗','🧀','🥛','🍌'][i]}</div><div class="foodmain"><b>${f[0]}</b><small>${f[1]} kcal · ${f[2]} g protein</small></div><button class="addcircle" data-preset="${i}">+</button></div>`).join('');
+}
+function renderWeights(){
+ const weights=[...data.weights].sort((a,b)=>a.date.localeCompare(b.date));$('latestWeight').textContent=weights.length?Number(weights[weights.length-1].weight).toFixed(1)+' kg':'—';
+ if(weights.length>1){const diff=weights[weights.length-1].weight-weights[0].weight;$('weightChange').textContent=`${diff>0?'+':''}${diff.toFixed(1)} kg since first logged measurement.`}else $('weightChange').textContent='Log a measurement to start your trend.';
+ $('weightEntries').innerHTML=weights.length?[...weights].reverse().slice(0,12).map(w=>`<div class="entry"><div class="foodemoji">⚖️</div><div class="foodmain"><b>${Number(w.weight).toFixed(1)} kg${w.waist?` · Waist ${w.waist} cm`:''}</b><small>${pretty(w.date)} ${w.note?'· '+esc(w.note):''}</small></div></div>`).join(''):'<div class="empty">No measurements yet.</div>';
+ svgChart($('weightChart'),weights.slice(-12));svgChart($('progressChart'),weights.slice(-12));
+}
+function renderActivity(){
+ const d=day();$('activitySteps').textContent=(d.steps||0).toLocaleString();$('activityCardio').textContent=cardioTotal(d)+'m';const dist=(d.cardio||[]).reduce((a,c)=>a+(+c.distance||0),0);$('activityDistance').textContent=dist?dist.toFixed(1)+' km':'—';
+ $('activityEntries').innerHTML=(d.cardio||[]).length?(d.cardio||[]).map((c,i)=>`<div class="entry"><div class="foodemoji">🏃</div><div class="foodmain"><b>${esc(c.type)} · ${c.minutes} min</b><small>${c.distance?c.distance+' km · ':''}${pretty(activeDate)}</small></div><button class="addcircle" data-cardio-remove="${i}">×</button></div>`).join(''):'<div class="empty">No cardio logged for this date.</div>';
+}
+function renderProgress(){
+ $('progressGoal').textContent=data.profile.goal.toUpperCase();$('progressWorkouts').textContent=data.workouts.length;
+ $('progressFoodDays').textContent=Object.values(data.days).filter(d=>d.foods?.length).length;
+ const weights=[...data.weights].sort((a,b)=>a.date.localeCompare(b.date));if(weights.length>1){const d=weights.at(-1).weight-weights[0].weight;$('progressWeight').textContent=(d>0?'+':'')+d.toFixed(1)+' kg'}else $('progressWeight').textContent='—';
+ const best={};data.workouts.forEach(w=>(w.sets||[]).forEach(s=>{if(s.done){const k=s.exercise||'Logged set';const score=s.w*s.r;if(!best[k]||score>best[k].score)best[k]={score,w:s.w,r:s.r}}}));
+ $('prList').innerHTML=Object.keys(best).length?Object.entries(best).slice(-5).map(([k,v])=>`<div class="entry"><div class="foodemoji">✦</div><div class="foodmain"><b>${esc(k)}</b><small>Best logged set · ${v.w} kg × ${v.r}</small></div></div>`).join(''):'<div class="empty">Finish and save a workout to build your strength history.</div>';
+ const days=Array.from({length:7},(_,i)=>{const date=new Date();date.setDate(date.getDate()-6+i);return date.toISOString().slice(0,10)});$('consistency').innerHTML=days.map(dt=>{const d=data.days[dt];const w=data.workouts.some(x=>x.date===dt);return `<div class="stat"><label>${new Date(dt+'T12:00:00').toLocaleDateString(undefined,{weekday:'short'})}</label><div style="font-size:19px">${w?'🏋️':'·'}</div><span class="tiny muted">${d?.foods?.length?'Food ✓':'No food'}</span></div>`}).join('');
+}
+function navigate(page){currentPage=page;document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));const titles={home:['Your day','Small actions. Measurable progress.'],train:['Train','Log the work. Build the trend.'],nutrition:['Nutrition','Fuel your goal, one meal at a time.'],body:['Body & weight','Watch the trend, not one weigh-in.'],activity:['Steps & cardio','Movement adds up.'],progress:['Progress','See what your consistent work is building.'],profile:['Plan & settings','Set the target. Keep your data yours.']};$('pageTitle').textContent=titles[page][0];$('pageSubtitle').textContent=titles[page][1];window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.go)));
+document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>{data.profile.goal=b.dataset.goal;document.querySelectorAll('[data-goal]').forEach(x=>x.classList.toggle('active',x===b));$('profileGoal').value=b.dataset.goal;save();toast('Goal updated')}));
+$('quickDate').addEventListener('click',()=>{const v=prompt('Enter date as YYYY-MM-DD',activeDate);if(v&&/^\d{4}-\d{2}-\d{2}$/.test(v)){activeDate=v;$('todayLabel').textContent=pretty(v);render();toast('Viewing '+pretty(v))}});
+$('saveFood').addEventListener('click',()=>{const name=$('foodSearch').value.trim();if(!name){toast('Enter a food name first');return}day().foods.push({name,kcal:num('foodKcal'),p:num('foodProtein'),c:num('foodCarbs'),f:num('foodFat'),meal:$('foodMeal').value,time:new Date().toISOString()});['foodSearch','foodKcal','foodProtein','foodCarbs','foodFat'].forEach(id=>$(id).value='');save();toast('Food added')});
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.preset!==undefined){const f=[['Eggs · 2 large',140,12,1,10],['Oats · 50 g',190,7,32,4],['Chicken breast · 100 g',165,31,0,4],['Paneer · 100 g',265,18,4,20],['Whey protein · 1 scoop',120,24,3,2],['Banana · 1 medium',90,1,23,0]][+b.dataset.preset];day().foods.push({name:f[0],kcal:f[1],p:f[2],c:f[3],f:f[4],meal:'Snack'});save();toast('Added '+f[0])}
+ if(b.dataset.foodremove!==undefined){day().foods.splice(+b.dataset.foodremove,1);save();toast('Food removed')}
+ if(b.dataset.cardioRemove!==undefined){day().cardio.splice(+b.dataset.cardioRemove,1);save();toast('Cardio entry removed')}
+ if(b.dataset.done){const [ei,si]=b.dataset.done.split(',').map(Number);window.sessionExercises[ei].sets[si].done=!window.sessionExercises[ei].sets[si].done;renderWorkout()}
+ if(b.dataset.remove!==undefined){window.sessionExercises.splice(+b.dataset.remove,1);renderWorkout()}
+ if(b.dataset.addset!==undefined){window.sessionExercises[+b.dataset.addset].sets.push({w:window.sessionExercises[+b.dataset.addset].sets.at(-1)?.w||0,r:8,done:false});renderWorkout()}
+});
+document.addEventListener('change',e=>{const el=e.target;if(el.dataset.ex!==undefined){const x=window.sessionExercises[+el.dataset.ex].sets[+el.dataset.set];x[el.dataset.field]=Math.max(0,Number(el.value)||0);renderWorkout()}});
+$('addExercise').addEventListener('click',()=>{const name=prompt('Exercise name');if(name?.trim()){window.sessionExercises.push({name:name.trim(),prev:'No previous entry',sets:[{w:0,r:8,done:false},{w:0,r:8,done:false},{w:0,r:8,done:false}]});renderWorkout()}});
+$('finishWorkout').addEventListener('click',()=>{const sets=window.sessionExercises.flatMap(e=>e.sets.filter(s=>s.done).map(s=>({...s,exercise:e.name})));if(!sets.length&&!confirm('No sets are checked off. Save the session anyway?'))return;const volume=sets.reduce((a,s)=>a+s.w*s.r,0);data.workouts.push({date:activeDate,name:$('workoutName').value||'Workout',rpe:$('workoutRpe').value,sets,volume,duration:Math.max(1,Math.round((Date.now()-workoutStart)/60000))});window.sessionExercises=null;workoutStart=Date.now();save();toast('Workout saved')});
+$('restToggle').addEventListener('click',()=>$('restPanel').classList.toggle('hide'));
+function showRest(){$('restTime').textContent=String(Math.floor(restSeconds/60)).padStart(2,'0')+':'+String(restSeconds%60).padStart(2,'0')}
+$('restStart').addEventListener('click',()=>{if(restInterval){clearInterval(restInterval);restInterval=null;$('restStart').textContent='Resume'}else{$('restStart').textContent='Pause';restInterval=setInterval(()=>{restSeconds--;if(restSeconds<=0){clearInterval(restInterval);restInterval=null;restSeconds=0;$('restStart').textContent='Start';toast('Rest complete — next set when ready')}showRest()},1000)}});$('restReset').addEventListener('click',()=>{if(restInterval)clearInterval(restInterval);restInterval=null;restSeconds=90;showRest();$('restStart').textContent='Start'});
+$('saveWeight').addEventListener('click',()=>{const w=num('weightInput');if(!w){toast('Enter a valid weight');return}data.weights.push({date:activeDate,weight:w,waist:num('waistInput')||null,note:$('weightNote').value.trim()});data.weights.sort((a,b)=>a.date.localeCompare(b.date));$('weightInput').value='';$('waistInput').value='';$('weightNote').value='';save();toast('Measurement saved')});
+$('saveActivity').addEventListener('click',()=>{const d=day();d.steps=num('stepsInput');const minutes=num('cardioInput');if(minutes)d.cardio.push({minutes,type:$('cardioType').value,distance:num('distanceInput')||0});$('stepsInput').value='';$('cardioInput').value='';$('distanceInput').value='';save();toast('Activity saved')});
+$('saveProfile').addEventListener('click',()=>{data.profile={goal:$('profileGoal').value,phase:$('phaseInput').value.trim()||'Phase 1',calories:num('targetCalories'),protein:num('targetProtein'),carbs:num('targetCarbs'),fat:num('targetFat'),goalWeight:num('goalWeight')||null,steps:num('targetSteps')||10000};save();document.querySelectorAll('[data-goal]').forEach(x=>x.classList.toggle('active',x.dataset.goal===data.profile.goal));toast('Goals saved')});
+function download(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+$('exportJson').addEventListener('click',()=>download('forge-backup-'+today()+'.json',JSON.stringify(data,null,2),'application/json'));
+$('exportCsv').addEventListener('click',()=>{const d=day();const rows=[['Date','Type','Name','Calories','Protein','Carbs','Fat','Steps','Cardio minutes'],...d.foods.map(f=>[activeDate,'Food',f.name,f.kcal,f.p,f.c,f.f,'','']),[activeDate,'Activity','Steps','','','','',d.steps,cardioTotal(d)],...(d.cardio||[]).map(c=>[activeDate,'Cardio',c.type,'','','','',d.steps,c.minutes])];download('forge-'+activeDate+'.csv',rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv')});
+$('importJson').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!parsed.profile||!parsed.days||!Array.isArray(parsed.weights)||!Array.isArray(parsed.workouts))throw new Error('This does not look like a FORGE backup.');if(!confirm('Replace current FORGE data with this backup? Download a backup first if you need one.'))return;data=parsed;save();toast('Backup restored')}catch(err){alert('Could not restore backup: '+err.message)}finally{e.target.value=''}});
+$('clearData').addEventListener('click',()=>{if(confirm('Delete ALL FORGE logs and settings from this browser? This cannot be undone. Export a backup first if needed.')){data=defaultData();window.sessionExercises=null;localStorage.removeItem('forge_standalone_v1');save();toast('App data cleared')}});
+$('profileGoal').value=data.profile.goal;$('phaseInput').value=data.profile.phase;$('targetCalories').value=data.profile.calories;$('targetProtein').value=data.profile.protein;$('targetCarbs').value=data.profile.carbs;$('targetFat').value=data.profile.fat;$('goalWeight').value=data.profile.goalWeight||'';$('targetSteps').value=data.profile.steps||10000;
+document.querySelectorAll('[data-goal]').forEach(x=>x.classList.toggle('active',x.dataset.goal===data.profile.goal));
+render();showRest();
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
+}
+</script>
+
+</body></html>
